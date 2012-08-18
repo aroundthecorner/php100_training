@@ -1,0 +1,12 @@
+*{font-family:微软雅黑,Arial;font-size:16px;color:#5b5b5b;padding:0;margin:0}
+body{background-color:#DCDCDC;}
+a:hover{color:#147DB3;font-weight:bold;}
+#container{width:400px;margin:20px auto;padding:20px;background-color:#fff;}
+.tb{width:400px;}
+.tb_title{width:400px;padding:10px;font-size:24px;text-align:center;background-color:#164070;color:#fff;font-weight:bold;}
+.tb_label{width:120px;text-align:center;padding:10px;background-color:#4FB716;color:#fff;font-size:20px;}
+.tb_btn{text-align:center;padding:10px;font-size:18px;}
+.input_btn{width:100px;padding:5px;margin:5px 10px 5px 80px;}
+.input_txt{width:224px;padding:10px;border:1px solid #5EB3F4;font-weight:bold;color:#333;font-size:24px;}
+#info{width:400px;padding:2px;text-align:center;color:#F2AB30;}
+#logout{width:400px;padding:10px;height:50px;}
