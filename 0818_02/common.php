@@ -20,7 +20,7 @@ function check_user($username,$pwd){
  
 //查找重复用户名
 function check_double($username){
-	$file_content = implode(file(DB));
+	$file_content = file_get_contents(DB);
 	$file_content = str_replace("\r\n","##",$file_content);
 	if(preg_match('/#?'.$username.':/',$file_content,$result)){
 		return true;
