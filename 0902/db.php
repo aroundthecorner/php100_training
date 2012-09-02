@@ -62,8 +62,7 @@
 		$ret_str .= ($p_current<$p_end?'<a href='.$url.'?'.$p.'='.($p_current+1).'>下一页</a>':'');
 		$ret_str .= '<a href='.$url.'?'.$p.'='.$p_total.'>尾页</a>';
 		$ret_str .= '</div><div class="clear_div"></div>';
-		
-		
+
 		return $ret_str;
 	}
 	
