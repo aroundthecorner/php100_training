@@ -70,14 +70,33 @@
 	*封装mysql_query和mysql_fetch_array
 	*返回查询到的结果二维数组，如果出错或没有数据返回false
 	*/
-	function my_mysql_query(){
+	function my_mysql_query($sql){
+		$ret_arr = array();
+		$rs = mysql_query($sql);
+		if($rs){
+			while($v = mysql_fetch_array($rs)){
+				$ret_arr[] = $v;
+			}
+			return $ret_arr;
+		}else{
+			return false;
+		}
 	}
 	
 	/*
 	*无限级分类
 	*/
-	function classify(){
-		
+	//$pid：父节点，$level：用来显示层级缩进关系
+	//$option:为true表示生成带option选项的字符串
+	//$check_val:传入检验value，设定selected
+	//调用时get_child(0,0,返回值数组);
+	function get_child($pid,$level,&$ret_str,$option=false,$check_val=''){
+		//获得所有等于父节点id的子节点
+		$result = mysql_query('select * from news_type where tid='.$pid) or die("查询时出错...");
+		//显示节点
+		while($rs = mysql_fetch_array($result)){
+			$ret_str .= ($option?'<option value="'.$rs['ttid'].'"'.($check_val==''?'':($check_val==$rs['ttid']?' selected':'')).'>':'').'|'.str_repeat('--',$level).$rs['typename'].($option?'</option>':'</br>');
+			get_child($rs['ttid'],$level+1,$ret_str,$option,$check_val);
+		}
 	}
-	
 ?>

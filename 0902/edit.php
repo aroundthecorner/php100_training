@@ -2,12 +2,14 @@
 	$info='';				//记录提示信息
 	if(!empty($_GET['id'])){
 		include('db.php');
+		/*
 		$type_sql = 'select * from news_type group by ttid';
 		$type_query = mysql_query($type_sql) or die('执行查询失败...');
 		$type = array();			
 		while($type_row = mysql_fetch_array($type_query)){
 			$type[]=$type_row;			//存储新闻类型
 		}
+		*/
 		
 		$news_sql = "select * from news,news_content where news.id=news_content.nid and news.id=".$_GET['id'];
 		$news_query = mysql_query($news_sql) or die('查询数据库出错...');
@@ -62,10 +64,15 @@
 					<td class="label">类型</td>
 					<td>
 						<select name="type" style="width:120px;padding:2px;color:#6C6D6D;font-size:12px;line-height:24px;height:34px;">
-							<?php 
+							<?php
+								/*
 								foreach($type as $v){
 									echo '<option value="'.$v['ttid'].'" '.($v['ttid']=$news_detail['type']?'selected':'').'>'.$v['typename'].'</option>';
 								}
+								*/
+								$type_options = '';		//组建新闻类型type的下拉列表
+								get_child(0,1,$type_options,true,$news_detail['type']);		//生成type类型下拉列表,0:表示最上层
+								echo $type_options;
 							?>
 						</select>
 					</td>

@@ -4,11 +4,13 @@
 	$type_query = mysql_query($type_sql) or die('执行查询失败...');
 	$type = array();			//存储类型
 	$type_options = '';		//组建新闻类型type的下拉列表
-	
+	get_child(0,1,$type_options,true);		//生成type类型下拉列表,0:表示最上层
+	/*
 	while($type_row = mysql_fetch_array($type_query)){
 		$type[]=$type_row;
 		$type_options .='<option value="'.$type_row['ttid'].'">'.$type_row['typename'].'</option>';
 	}
+	*/
 	
 	$info = '';
 	if(!empty($_POST['submit'])){
