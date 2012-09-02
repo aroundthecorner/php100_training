@@ -1,12 +1,19 @@
 <?php
+	/*
+	*存放数据库链接和常用函数
+	*09-01,2012
+	*by 小心
+	*/
+	
 	//数据库信息
 	$DB_CONFIG = array(
-		'HOST'			=> 'localhost',				
-		'DB_NAME' 		=> 'php100',
-		'USER_NAME'		=> 'root',
-		'USER_PWD' 		=> 'xiaoxin',
-		'DB_CHARSET' 	=> 'UTF8'
+		'HOST'			=> 'localhost',						//数据库地址	
+		'DB_NAME' 		=> 'php100',						//数据库名
+		'USER_NAME'		=> 'root',							//用户
+		'USER_PWD' 		=> '',									//密码
+		'DB_CHARSET' 	=> 'UTF8'								//默认编码
 	);
+	
 	//链接数据库
 	$db_conn = mysql_connect($DB_CONFIG['HOST'],$DB_CONFIG['USER_NAME'],$DB_CONFIG['USER_PWD']) or die('链接数据库失败...（出错信息:'.mysql_error().')');
 	mysql_select_db($DB_CONFIG['DB_NAME']) or die('选择数据库失败...(出错信息:'.mysql_error().')');
@@ -15,7 +22,7 @@
 	//获得所有记录数
 	$TOTAL = mysql_num_rows(mysql_query('select * from news where del is null')) or die('获得新闻总数失败...');
 	
-	//处理post的数据，清除不规则内容，待完成
+	//处理post的数据，清除不规则内容，待持续添加
 	function handle_post($val){
 		$result = trim($val);				//去除空白
 		return $result;
@@ -63,22 +70,6 @@
 		$ret_str .= '<a href='.$url.'?'.$p.'='.$p_total.'>尾页</a>';
 		$ret_str .= '</div><div class="clear_div"></div>';
 		
-		
 		return $ret_str;
 	}
-	
-	/*
-	*封装mysql_query和mysql_fetch_array
-	*返回查询到的结果二维数组，如果出错或没有数据返回false
-	*/
-	function my_mysql_query(){
-	}
-	
-	/*
-	*无限级分类
-	*/
-	function classify(){
-		
-	}
-	
 ?>
