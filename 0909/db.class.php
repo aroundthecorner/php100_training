@@ -32,6 +32,10 @@
 				default:
 					return mysql_fetch_array($s);
 			}
+		}//end of f
+		
+		function i(){
+			return mysql_insert_id();
 		}
 	}
 ?>

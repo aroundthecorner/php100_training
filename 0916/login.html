@@ -1,0 +1,68 @@
+<!doctype htmel>
+<html>
+<head>
+	<style>
+	*	{font-size:12px; font-family:"微软雅黑",Arial;}
+		.tab_head{display:block;width:100px;height:20px;float:left;font-weight:bold;text-align:center;padding:2px;margin-right:10px;}
+		.tab_head a{text-decoration:none;font-size:16px;color:#000;}
+		.tab_content{display:block;width:500px;height:200px;background-color:#E7E9E4;padding-top:10px;border-top:3px solid #96D751;font-size:14px;}
+	</style>
+	<script type="text/javascript" src="js.js"></script>
+</head>
+<body>
+<form name="reg" action="" method="post" onsubmit="return checkInput();">
+	<label>用户名</label><input type="text" name="username" /><br/>
+	<label>密码</label><input type="text" name="pwd" /><br/>
+	<label>再次输入密码</label><input type="text" name="pwd2" /><br/>
+	<label>邮件</label><input type="text" name="email" /><br/>
+	<input type="submit" value="登录"/>
+</form>
+<br/>
+<br/>
+<br/>
+
+<div>
+	<ul style="list-style:none;">
+		<li id="tab_head1" class="tab_head" style="background-color:#5ABDDE;" onmouseover="doit(1);"><a href="###">tab1</a></li>
+		<li id="tab_head2" class="tab_head" onmouseover="doit(2);"><a href="###">tab2</a></li>
+		<li id="tab_head3" class="tab_head" onmouseover="doit(3);"><a href="###">tab3</a></li>
+		<li style="clear:both;"></li>
+		<li id="tab1" class="tab_content">这是内容1</li>
+		<li id="tab2" class="tab_content" style="display:none;">我是内容2</li>
+		<li id="tab3" class="tab_content" style="display:none;">他是内容3</li>
+	</ul>
+	
+</div>
+</body>
+
+<script>
+	function doit(n){
+		for(var i=1;i<=3;i++){
+			document.getElementById("tab"+i).style.display="none";
+			document.getElementById("tab_head"+i).style.background="#fff";
+		}
+		document.getElementById("tab"+n).style.display="block";
+		document.getElementById("tab_head"+n).style.background="#5ABDDE";
+	}
+	
+	function checkInput(){
+		var u_name = document.reg.username.value;
+		var u_pwd = document.reg.pwd.value;
+		var u_pwd2 = document.reg.pwd2.value;
+		var u_email = document.reg.email.value;
+		var email_preg = /[\w\d\.]+@[\w\d]+\.[\w\d\.]+/;
+		if(u_name=="" || u_pwd=="" || u_pwd2=="" || u_email==""){
+			alert("输入项不能为空！");
+			return false;
+		}else if(u_pwd!=u_pwd2){
+				alert("两次密码输入不一致!");
+				return false;
+		}else if(!email_preg.test(u_email)){
+				alert("邮件输入格式有误");
+				return false;
+		}
+		alert("恭喜过关！");
+		return false;
+	}
+</script>
+</html>
